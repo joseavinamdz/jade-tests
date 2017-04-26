@@ -31,7 +31,7 @@ public class Doctor extends Agent {
         
         DFAgentDescription template = new DFAgentDescription();
         ServiceDescription sd = new ServiceDescription();
-        sd.setType("hospital-service");
+        sd.setType("hospital-servicio");
         template.addServices(sd);
         
         try {
@@ -63,10 +63,8 @@ public class Doctor extends Agent {
             request.addReceiver(hospital);
             this.getAgent().send(request);
             
-            MessageTemplate tpl = 
-                    MessageTemplate.MatchConversationId("hospital-doctor-conversacion");
             
-            ACLMessage response = this.getAgent().blockingReceive(tpl);
+            ACLMessage response = this.getAgent().blockingReceive();
             
             if (response.getPerformative() == ACLMessage.INFORM) {
                 //Hay un paciente.

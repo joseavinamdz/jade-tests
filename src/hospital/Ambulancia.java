@@ -27,14 +27,14 @@ public class Ambulancia extends Agent {
         
         DFAgentDescription template = new DFAgentDescription();
         ServiceDescription sd = new ServiceDescription();
-        sd.setType("hospital-service");
+        sd.setType("hospital-servicio");
         template.addServices(sd);
         
         try {
             DFAgentDescription[] matches = DFService.searchUntilFound(this, new AID("df", AID.ISLOCALNAME), template, sc, 1000);
             
             if (matches.length > 0) {
-                this.addBehaviour(new EnviarPacientes(this, matches[0].getName(), 5000));
+                this.addBehaviour(new EnviarPacientes(this, matches[0].getName(), 2000));
             }
         } catch (FIPAException ex) {
             Logger.getLogger(Ambulancia.class.getName()).log(Level.SEVERE, null, ex);

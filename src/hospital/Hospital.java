@@ -32,7 +32,7 @@ public class Hospital extends Agent {
         salaDeEspera = new PriorityQueue(10, new Comparator<Integer>(){
             @Override
             public int compare(Integer o1, Integer o2) {
-                return o2.intValue() - o1.intValue();
+                return o2 - o1;
             }
         });
         
@@ -41,8 +41,8 @@ public class Hospital extends Agent {
         description.setName(this.getAID());
         
         ServiceDescription sd = new ServiceDescription();
-        sd.setType("hospital-service");
-        sd.setName("hospital-service");
+        sd.setType("hospital-servicio");
+        sd.setName("hospital-servicio");
         description.addServices(sd);
         
         try {
@@ -58,7 +58,7 @@ public class Hospital extends Agent {
     
     private void addPaciente(int gravedad) {
         salaDeEspera.add(gravedad);
-        System.out.printf("Paciente recibido (%d / %d)\n", salaDeEspera.size(), MAX_PACIENTES);
+        System.out.printf("Paciente recibido con gravedad %d (%d / %d)\n", gravedad, salaDeEspera.size(), MAX_PACIENTES);
         
     }
     
