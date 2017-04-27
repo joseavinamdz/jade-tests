@@ -6,7 +6,7 @@
 package hospital;
 
 import jade.core.Agent;
-import jade.core.behaviours.Behaviour;
+import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
@@ -83,7 +83,7 @@ public class Hospital extends Agent {
     que traen pacientes. Si se ha superado el límite de pacientes del hospital,
     el paciente es rechazado.
     */
-    class RecibirPacientes extends Behaviour {
+    class RecibirPacientes extends CyclicBehaviour {
         
         private Hospital hospital;
         
@@ -119,12 +119,6 @@ public class Hospital extends Agent {
             }
             
         }
-
-        @Override
-        public boolean done() {
-            return false;
-        }
-        
     }
     
     /*
@@ -134,7 +128,7 @@ public class Hospital extends Agent {
     de la sala de espera.
     */
     
-    class AtenderDoctores extends Behaviour {
+    class AtenderDoctores extends CyclicBehaviour {
         private Hospital hospital;
         
         public AtenderDoctores(Hospital hospital) {
@@ -171,11 +165,6 @@ public class Hospital extends Agent {
             else {
                 this.block();
             }
-        }
-
-        @Override
-        public boolean done() {
-            return false;
         }
         
     }
